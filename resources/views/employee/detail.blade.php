@@ -8,33 +8,33 @@
         <div class="card-body">
             <form>
                 <div class="form-group row">
-                    <label for="inputNIK" class="col-sm-2 col-form-label">NIK/ID</label>
+                    <label for="inputNIK" class="col-sm-2">NIK/ID</label>
                     <div class="col-sm-10">
-                        <p>: 965025</p>
+                        <p>: {{$employee->nik}}</p>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputOrganization" class="col-sm-2 col-form-label">Organization Name</label>
+                    <label for="inputOrganization" class="col-sm-2">Organization Name</label>
                     <div class="col-sm-10">
                         <p>: PT Finnet Indonesia</p>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                    <label for="inputName" class="col-sm-2">Name</label>
                     <div class="col-sm-10">
-                        <p>: Yuyun DA</p>
+                        <p>: {{$employee->nama}}</p>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputDivision" class="col-sm-2 col-form-label">Division</label>
+                    <label for="inputDivision" class="col-sm-2">Division</label>
                     <div class="col-sm-10">
                         <p>: IT Planning & Assurance</p>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputLevel" class="col-sm-2 col-form-label">Level</label>
+                    <label for="inputLevel" class="col-sm-2">Level</label>
                     <div class="col-sm-10">
-                        <p>: 5</p>
+                        <p>: {{$employee->level_jabatan}}</p>
                     </div>
                 </div>
                 <div class="form-group row">

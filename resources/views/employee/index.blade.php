@@ -29,21 +29,23 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                            <th>NIK</th>
-                            <th>Organization Name</th>
-                            <th>Name</th>
-                            <th>Action</th>
+                                <th>NIK</th>
+                                <th>Organization Name</th>
+                                <th>Name</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <td>965025</td>
-                            <td>PT Finnet Indonesia</td>
-                            <td>Yuyun Dwi A.</td>
-                            <td>
-                            <a href="{{route('employee.detail')}}" class="btn btn-info">View</a>
-                            </td>
-                            </tr>
+                            @foreach ($employees as $employee)
+                                <tr>
+                                    <td>{{$employee->nik}}</td>
+                                    <td>PT Finnet Indonesia</td>
+                                    <td>{{$employee->nama}}</td>
+                                    <td>
+                                    <a href="{{route('employee.detail', $employee->nik)}}" class="btn btn-info">View</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

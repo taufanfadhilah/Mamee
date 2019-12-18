@@ -23,17 +23,11 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/employee', function(){
-        return view('employee.index');
-    })->name('employee.index');
+    Route::get('/employee', 'EmployeeController@index')->name('employee.index');
 
-    Route::get('/addEmployee', function(){
-        return view('employee.add');
-    })->name('employee.add');
+    Route::get('/addEmployee', 'EmployeeController@create')->name('employee.add');
 
-    Route::get('/detailEmployee', function(){
-        return view('employee.detail');
-    })->name('employee.detail');
+    Route::get('/detailEmployee/{employee}', 'EmployeeController@show')->name('employee.detail');
 
     Route::get('/editEmployee', function(){
         return view('employee.edit');
