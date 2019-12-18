@@ -41,9 +41,14 @@
           <span>Management Room</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="{{route('login')}}">
+        <a class="nav-link" href="{{route('logout')}}" onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
           <i class="fas fa-fw fa-power-off"></i>
-          <span>Logout</span></a>
+          <span>Logout</span>
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
       </li>
 
     </ul>
