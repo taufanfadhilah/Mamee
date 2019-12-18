@@ -6,26 +6,40 @@
             <h6 class="m-0 font-weight-bold text-primary">Detail Unit</h6>
         </div>
         <div class="card-body">
-            <form>
-                <div class="form-group row">
-                    <label for="inputOrganization" class="col-sm-2 col-form-label">Organization Name</label>
-                    <div class="col-sm-10">
-                        <p>PT Finnet Indonesia</p>
-                    </div>
+            <div class="form-group row">
+                <label for="inputOrganization" class="col-sm-2">Organization Name</label>
+                <div class="col-sm-10">
+                    <p>: {{$unit->Division->Organization->nama_perusahaan}}</p>
                 </div>
-                <div class="form-group row">
-                    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                    <div class="col-sm-10">
-                        <p>IT Planning & Assurance</p>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputOrganization" class="col-sm-2">Division Name</label>
+                <div class="col-sm-10">
+                    <p>: {{$unit->Division->nama_divisi}}</p>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                        <a href="{{route('units.edit')}}" class="btn btn-warning">Edit</a>
-                        <button type="button" class="btn btn-danger" onclick="myAlert()">Delete</button>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputName" class="col-sm-2">Name</label>
+                <div class="col-sm-10">
+                    <p>: {{$unit->nama_unit}}</p>
                 </div>
-            </form>
+            </div>
+            <div class="form-group row">
+                <label for="inputOrganization" class="col-sm-2">Email</label>
+                <div class="col-sm-10">
+                    <p>: {{$unit->email_unit}}</p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <a href="{{route('units.edit', $unit->id_unit)}}" class="btn btn-warning">Edit</a>
+                    <button type="button" class="btn btn-danger" onclick="myAlert()">Delete</button>
+                    <form id="form-delete" method="POST" action="{{route('units.destroy', $unit->id_unit)}}">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
@@ -46,7 +60,7 @@
                     swal("Poof! Your data has been deleted!", {
                     icon: "success",
                     }).then(function(){
-                        window.location.href="{{route('units.index')}}"
+                        window.document.getElementById("form-delete").submit();
                     });
                 } else {
                     swal("Your data is safe!");

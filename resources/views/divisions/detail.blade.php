@@ -34,7 +34,7 @@
                     <div class="col-sm-10">
                         <a href="{{route('divisions.edit', $division->id_divisi)}}" class="btn btn-warning">Edit</a>
                         <button type="button" class="btn btn-danger" onclick="myAlert()">Delete</button>
-                        <form id="form-delete" method="POST" action="{{route('divisions.update', $division->id_divisi)}}">
+                        <form id="form-delete" method="POST" action="{{route('divisions.destroy', $division->id_divisi)}}">
                             @csrf
                             @method('DELETE')
                         </form>

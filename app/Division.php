@@ -19,4 +19,9 @@ class Division extends Model
     {
         return $this->belongsTo('App\Organization', 'id_perusahaan');
     }
+
+    public function Units()
+    {
+        return $this->hasMany('App\Unit', 'id_divisi');
+    }
 }

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Unit;
+use App\Division;
 use Illuminate\Http\Request;
-
+use Auth;
 class UnitController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class UnitController extends Controller
      */
     public function index()
     {
-        //
+        return view('units.index');
     }
 
     /**
@@ -24,7 +25,10 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+        $divisions = Division::where('id_perusahaan', Auth::user()->id_perusahaan)->get();
+        return view('units.add', [
+            'divisions' => $divisions
+        ]);
     }
 
     /**
@@ -35,7 +39,8 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Unit::create($request->all());
+        return redirect(route('units.index'));
     }
 
     /**
@@ -46,7 +51,9 @@ class UnitController extends Controller
      */
     public function show(Unit $unit)
     {
-        //
+        return view('units.detail', [
+            'unit' => $unit
+        ]);
     }
 
     /**
@@ -57,7 +64,11 @@ class UnitController extends Controller
      */
     public function edit(Unit $unit)
     {
-        //
+        $divisions = Division::where('id_perusahaan', Auth::user()->id_perusahaan)->get();
+        return view('units.edit', [
+            'unit' => $unit,
+            'divisions' => $divisions
+        ]);
     }
 
     /**
@@ -69,7 +80,8 @@ class UnitController extends Controller
      */
     public function update(Request $request, Unit $unit)
     {
-        //
+        $unit->update($request->all());
+        return redirect(route('units.index'));
     }
 
     /**
@@ -80,6 +92,7 @@ class UnitController extends Controller
      */
     public function destroy(Unit $unit)
     {
-        //
+        $unit->delete();
+        return redirect(route('units.index'));
     }
 }

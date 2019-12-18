@@ -14,4 +14,9 @@ class Unit extends Model
     protected $primaryKey = 'id_unit';
     // define fillable fields
     protected $fillable = ['id_unit', 'id_divisi', 'nama_unit', 'email_unit', 'status'];
+
+    public function Division()
+    {
+        return $this->belongsTo('App\Division', 'id_divisi');
+    }
 }

@@ -14,7 +14,7 @@
             <div class="card-body">
                 <div class="row mb-4">
                     <div class="col-md-3">
-                    <a href="{{route('units.add')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Add</a>
+                    <a href="{{route('units.create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Add</a>
                     </div>
                     <div class="input-group mb-3 col-md-3">
                         <div class="custom-file">
@@ -36,14 +36,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <td>PT Finnet Indonesia</td>
-                            <td>IT Planning & Assurance</td>
-                            <td>IT Quality Assurance</td>
-                            <td>
-                            <a href="{{route('units.detail')}}" class="btn btn-info">View</a>
-                            </td>
-                            </tr>
+                            @foreach (Auth::user()->Organization->Divisions as $divisions)
+                                @foreach ($divisions->Units as $unit)
+                                    <tr>
+                                        <td>{{$divisions->Organization->nama_perusahaan}}</td>
+                                        <td>{{$divisions->nama_divisi}}</td>
+                                        <td>{{$unit->nama_unit}}</td>
+                                        <td>
+                                        <a href="{{route('units.show', $unit->id_unit)}}" class="btn btn-info">View</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

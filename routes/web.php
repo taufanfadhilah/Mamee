@@ -65,21 +65,21 @@ Route::middleware('auth')->group(function () {
         return view('rooms.edit');
     })->name('rooms.edit');
 
-    Route::get('/units', function(){
-        return view('units.index');
-    })->name('units.index');
+    // Route::get('/units', function(){
+    //     return view('units.index');
+    // })->name('units.index');
 
-    Route::get('/addUnits', function(){
-        return view('units.add');
-    })->name('units.add');
+    // Route::get('/addUnits', function(){
+    //     return view('units.add');
+    // })->name('units.add');
 
-    Route::get('/detailUnits', function(){
-        return view('units.detail');
-    })->name('units.detail');
+    // Route::get('/detailUnits', function(){
+    //     return view('units.detail');
+    // })->name('units.detail');
 
-    Route::get('/editUnits', function(){
-        return view('units.edit');
-    })->name('units.edit');
-
+    // Route::get('/editUnits', function(){
+    //     return view('units.edit');
+    // })->name('units.edit');
+    Route::resource('units', 'UnitController');
     Route::resource('divisions', 'DivisionController');
 });

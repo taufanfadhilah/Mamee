@@ -14,4 +14,9 @@ class Organization extends Model
     protected $primaryKey = 'id_perusahaan';
     // define fillable fields
     protected $fillable = ['id_perusahaan', 'nama_perusahaan', 'status', 'account_name'];
+
+    public function Divisions()
+    {
+        return $this->hasMany('App\Division', 'id_perusahaan');
+    }
 }
