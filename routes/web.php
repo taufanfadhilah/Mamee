@@ -15,78 +15,80 @@ Route::get('/', function () {
     return redirect(route('login'));
 });
 
-Route::get('/login', function(){
-    return view('auth.login');
-})->name('login');
+Auth::routes();
 
-Route::get('/dashboard', function(){
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware('auth')->group(function () {
+    
+    Route::get('/dashboard', function(){
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::get('/employee', function(){
-    return view('employee.index');
-})->name('employee.index');
+    Route::get('/employee', function(){
+        return view('employee.index');
+    })->name('employee.index');
 
-Route::get('/addEmployee', function(){
-    return view('employee.add');
-})->name('employee.add');
+    Route::get('/addEmployee', function(){
+        return view('employee.add');
+    })->name('employee.add');
 
-Route::get('/detailEmployee', function(){
-    return view('employee.detail');
-})->name('employee.detail');
+    Route::get('/detailEmployee', function(){
+        return view('employee.detail');
+    })->name('employee.detail');
 
-Route::get('/editEmployee', function(){
-    return view('employee.edit');
-})->name('employee.edit');
+    Route::get('/editEmployee', function(){
+        return view('employee.edit');
+    })->name('employee.edit');
 
-Route::get('/organizations', function(){
-    return view('organizations.index');
-})->name('organizations.index');
+    Route::get('/organizations', function(){
+        return view('organizations.index');
+    })->name('organizations.index');
 
-Route::get('/addOrganizations', function(){
-    return view('organizations.add');
-})->name('organizations.add');
+    Route::get('/addOrganizations', function(){
+        return view('organizations.add');
+    })->name('organizations.add');
 
-Route::get('/detailOrganizations', function(){
-    return view('organizations.detail');
-})->name('organizations.detail');
+    Route::get('/detailOrganizations', function(){
+        return view('organizations.detail');
+    })->name('organizations.detail');
 
-Route::get('/editOrganizations', function(){
-    return view('organizations.edit');
-})->name('organizations.edit');
+    Route::get('/editOrganizations', function(){
+        return view('organizations.edit');
+    })->name('organizations.edit');
 
-Route::get('/rooms', function(){
-    return view('rooms.index');
-})->name('rooms.index');
+    Route::get('/rooms', function(){
+        return view('rooms.index');
+    })->name('rooms.index');
 
-Route::get('/addRooms', function(){
-    return view('rooms.add');
-})->name('rooms.add');
+    Route::get('/addRooms', function(){
+        return view('rooms.add');
+    })->name('rooms.add');
 
-Route::get('/detailRooms', function(){
-    return view('rooms.detail');
-})->name('rooms.detail');
+    Route::get('/detailRooms', function(){
+        return view('rooms.detail');
+    })->name('rooms.detail');
 
-Route::get('/editRooms', function(){
-    return view('rooms.edit');
-})->name('rooms.edit');
+    Route::get('/editRooms', function(){
+        return view('rooms.edit');
+    })->name('rooms.edit');
 
-Route::get('/units', function(){
-    return view('units.index');
-})->name('units.index');
+    Route::get('/units', function(){
+        return view('units.index');
+    })->name('units.index');
 
-Route::get('/addUnits', function(){
-    return view('units.add');
-})->name('units.add');
+    Route::get('/addUnits', function(){
+        return view('units.add');
+    })->name('units.add');
 
-Route::get('/detailUnits', function(){
-    return view('units.detail');
-})->name('units.detail');
+    Route::get('/detailUnits', function(){
+        return view('units.detail');
+    })->name('units.detail');
 
-Route::get('/editUnits', function(){
-    return view('units.edit');
-})->name('units.edit');
+    Route::get('/editUnits', function(){
+        return view('units.edit');
+    })->name('units.edit');
 
-Route::get('/divisions', function(){
-    return view('divisions.index');
-})->name('divisions.index');
+    Route::get('/divisions', function(){
+        return view('divisions.index');
+    })->name('divisions.index');
+
+});
