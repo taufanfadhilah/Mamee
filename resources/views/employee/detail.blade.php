@@ -6,44 +6,46 @@
             <h6 class="m-0 font-weight-bold text-primary">Detail Employee</h6>
         </div>
         <div class="card-body">
-            <form>
-                <div class="form-group row">
-                    <label for="inputNIK" class="col-sm-2">NIK/ID</label>
-                    <div class="col-sm-10">
-                        <p>: {{$employee->nik}}</p>
-                    </div>
+            <div class="form-group row">
+                <label for="inputNIK" class="col-sm-2">NIK/ID</label>
+                <div class="col-sm-10">
+                    <p>: {{$employee->nik}}</p>
                 </div>
-                <div class="form-group row">
-                    <label for="inputOrganization" class="col-sm-2">Organization Name</label>
-                    <div class="col-sm-10">
-                        <p>: PT Finnet Indonesia</p>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputOrganization" class="col-sm-2">Organization Name</label>
+                <div class="col-sm-10">
+                    <p>: PT Finnet Indonesia</p>
                 </div>
-                <div class="form-group row">
-                    <label for="inputName" class="col-sm-2">Name</label>
-                    <div class="col-sm-10">
-                        <p>: {{$employee->nama}}</p>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputName" class="col-sm-2">Name</label>
+                <div class="col-sm-10">
+                    <p>: {{$employee->nama}}</p>
                 </div>
-                <div class="form-group row">
-                    <label for="inputDivision" class="col-sm-2">Division</label>
-                    <div class="col-sm-10">
-                        <p>: IT Planning & Assurance</p>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputDivision" class="col-sm-2">Division</label>
+                <div class="col-sm-10">
+                    <p>: IT Planning & Assurance</p>
                 </div>
-                <div class="form-group row">
-                    <label for="inputLevel" class="col-sm-2">Level</label>
-                    <div class="col-sm-10">
-                        <p>: {{$employee->level_jabatan}}</p>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputLevel" class="col-sm-2">Level</label>
+                <div class="col-sm-10">
+                    <p>: {{$employee->level_jabatan}}</p>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                        <a href="{{route('employee.edit')}}" class="btn btn-warning">Edit</a>
-                        <button type="button" class="btn btn-danger" onclick="myAlert()">Delete</button>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <a href="{{route('employee.edit', $employee->nik)}}" class="btn btn-warning">Edit</a>
+                    <button type="button" class="btn btn-danger" onclick="myAlert()">Delete</button>
+                    <form id="form-delete" method="POST" action="{{route('employee.destroy', $employee->nik)}}">
+                        @csrf
+                        @method('DELETE')
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 @endsection
@@ -64,7 +66,7 @@
                     swal("Poof! Your data has been deleted!", {
                     icon: "success",
                     }).then(function(){
-                        window.location.href="{{route('employee.index')}}"
+                        window.document.getElementById("form-delete").submit();
                     });
                 } else {
                     swal("Your data is safe!");

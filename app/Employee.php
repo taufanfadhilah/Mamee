@@ -14,4 +14,9 @@ class Employee extends Model
     protected $primaryKey = 'nik';
     // define fillable fields
     protected $fillable = ['nik', 'id_unit', 'nama', 'level_jabatan', 'email', 'phone', 'foto'];
+
+    public function Unit()
+    {
+        return $this->belongsTo('App\Unit', 'id_unit');
+    }
 }

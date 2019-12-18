@@ -14,7 +14,7 @@
             <div class="card-body">
                 <div class="row mb-4">
                     <div class="col-md-2">
-                        <a href="{{route('employee.add')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Add</a>
+                        <a href="{{route('employee.create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Add</a>
                     </div>
                     <div class="input-group mb-3 col-md-3">
                         <div class="custom-file">
@@ -39,10 +39,10 @@
                             @foreach ($employees as $employee)
                                 <tr>
                                     <td>{{$employee->nik}}</td>
-                                    <td>PT Finnet Indonesia</td>
+                                    <td>{{$employee->Unit->Division->Organization->nama_perusahaan}}</td>
                                     <td>{{$employee->nama}}</td>
                                     <td>
-                                    <a href="{{route('employee.detail', $employee->nik)}}" class="btn btn-info">View</a>
+                                    <a href="{{route('employee.show', $employee->nik)}}" class="btn btn-info">View</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -22,16 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function(){
         return view('dashboard');
     })->name('dashboard');
-
-    Route::get('/employee', 'EmployeeController@index')->name('employee.index');
-
-    Route::get('/addEmployee', 'EmployeeController@create')->name('employee.add');
-
-    Route::get('/detailEmployee/{employee}', 'EmployeeController@show')->name('employee.detail');
-
-    Route::get('/editEmployee', function(){
-        return view('employee.edit');
-    })->name('employee.edit');
+    Route::resource('employee', 'EmployeeController');
+    Route::resource('rooms', 'RoomController');
+    Route::resource('units', 'UnitController');
+    Route::resource('divisions', 'DivisionController');
 
     Route::get('/organizations', function(){
         return view('organizations.index');
@@ -48,23 +42,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/editOrganizations', function(){
         return view('organizations.edit');
     })->name('organizations.edit');
-
-    // Route::get('/rooms', function(){
-    //     return view('rooms.index');
-    // })->name('rooms.index');
-
-    // Route::get('/addRooms', function(){
-    //     return view('rooms.add');
-    // })->name('rooms.add');
-
-    // Route::get('/detailRooms', function(){
-    //     return view('rooms.detail');
-    // })->name('rooms.detail');
-
-    // Route::get('/editRooms', function(){
-    //     return view('rooms.edit');
-    // })->name('rooms.edit');
-    Route::resource('rooms', 'RoomController');
-    Route::resource('units', 'UnitController');
-    Route::resource('divisions', 'DivisionController');
 });
