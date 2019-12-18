@@ -14,7 +14,7 @@
             <div class="card-body">
                 <div class="row mb-4">
                     <div class="col-md-3">
-                    <a href="{{route('rooms.add')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Add</a>
+                    <a href="{{route('rooms.create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Add</a>
                     </div>
                     <div class="input-group mb-3 col-md-3">
                         <div class="custom-file">
@@ -36,14 +36,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <td>PT Finnet Indonesia</td>
-                            <td>Solid</td>
-                            <td>15</td>
-                            <td>
-                            <a href="{{route('rooms.detail')}}" class="btn btn-info">View</a>
-                            </td>
-                            </tr>
+                            @foreach ($rooms as $room)
+                                <tr>
+                                    <td>{{$room->Organization->nama_perusahaan}}</td>
+                                    <td>{{$room->nama_ruangan}}</td>
+                                    <td>{{$room->kapasitas}}</td>
+                                    <td>
+                                    <a href="{{route('rooms.show', $room->id_room)}}" class="btn btn-info">View</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

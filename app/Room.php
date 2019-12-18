@@ -14,4 +14,9 @@ class Room extends Model
     protected $primaryKey = 'id_room';
     // define fillable fields
     protected $fillable = ['id_room', 'id_perusahaan', 'nama_ruangan', 'lokasi', 'img_map', 'img_foto', 'kapasitas', 'status'];
+
+    public function Organization()
+    {
+        return $this->belongsTo('App\Organization', 'id_perusahaan');
+    }
 }

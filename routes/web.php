@@ -49,37 +49,22 @@ Route::middleware('auth')->group(function () {
         return view('organizations.edit');
     })->name('organizations.edit');
 
-    Route::get('/rooms', function(){
-        return view('rooms.index');
-    })->name('rooms.index');
+    // Route::get('/rooms', function(){
+    //     return view('rooms.index');
+    // })->name('rooms.index');
 
-    Route::get('/addRooms', function(){
-        return view('rooms.add');
-    })->name('rooms.add');
+    // Route::get('/addRooms', function(){
+    //     return view('rooms.add');
+    // })->name('rooms.add');
 
-    Route::get('/detailRooms', function(){
-        return view('rooms.detail');
-    })->name('rooms.detail');
+    // Route::get('/detailRooms', function(){
+    //     return view('rooms.detail');
+    // })->name('rooms.detail');
 
-    Route::get('/editRooms', function(){
-        return view('rooms.edit');
-    })->name('rooms.edit');
-
-    // Route::get('/units', function(){
-    //     return view('units.index');
-    // })->name('units.index');
-
-    // Route::get('/addUnits', function(){
-    //     return view('units.add');
-    // })->name('units.add');
-
-    // Route::get('/detailUnits', function(){
-    //     return view('units.detail');
-    // })->name('units.detail');
-
-    // Route::get('/editUnits', function(){
-    //     return view('units.edit');
-    // })->name('units.edit');
+    // Route::get('/editRooms', function(){
+    //     return view('rooms.edit');
+    // })->name('rooms.edit');
+    Route::resource('rooms', 'RoomController');
     Route::resource('units', 'UnitController');
     Route::resource('divisions', 'DivisionController');
 });

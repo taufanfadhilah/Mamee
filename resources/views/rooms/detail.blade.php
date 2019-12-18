@@ -6,38 +6,52 @@
             <h6 class="m-0 font-weight-bold text-primary">Detail Room</h6>
         </div>
         <div class="card-body">
-            <form>
-                <div class="form-group row">
-                    <label for="inputOrganization" class="col-sm-2 col-form-label">Organization Name</label>
-                    <div class="col-sm-10">
-                        <p>PT Finnet Indonesia</p>
-                    </div>
+            <div class="form-group row">
+                <label for="inputOrganization" class="col-sm-2">Organization Name</label>
+                <div class="col-sm-10">
+                    <p>: {{Auth::user()->Organization->nama_perusahaan}}</p>
                 </div>
-                <div class="form-group row">
-                    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                    <div class="col-sm-10">
-                        <p>Solid</p>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputName" class="col-sm-2">Name</label>
+                <div class="col-sm-10">
+                    <p>: {{$room->nama_ruangan}}</p>
                 </div>
-                <div class="form-group row">
-                    <label for="inputCapacity" class="col-sm-2 col-form-label">Capacity</label>
-                    <div class="col-sm-10">
-                        <p>15</p>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputCapacity" class="col-sm-2">Capacity</label>
+                <div class="col-sm-10">
+                    <p>: {{$room->kapasitas}}</p>
                 </div>
-                <div class="form-group row">
-                    <label for="notes" class="col-sm-2 col-form-label">Notes</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" id="notes" rows="3">Ini ruang Solid</textarea>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputCapacity" class="col-sm-2">Location</label>
+                <div class="col-sm-10">
+                    <p>: {{$room->lokasi}}</p>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                        <a href="{{route('rooms.edit')}}" class="btn btn-warning">Edit</a>
-                        <button type="button" class="btn btn-danger" onclick="myAlert()">Delete</button>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputCapacity" class="col-sm-2">Photo</label>
+                <div class="col-sm-10">
+                    <img src="{{$room->img_foto}}" alt="" class="img-thumbnail" width="200" height="150">
                 </div>
-            </form>
+            </div>
+            <div class="form-group row">
+                <label for="inputCapacity" class="col-sm-2">Map</label>
+                <div class="col-sm-10">
+                    <img src="{{$room->img_map}}" alt="" class="img-thumbnail" width="200" height="150">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <a href="{{route('rooms.edit', $room->id_room)}}" class="btn btn-warning">Edit</a>
+                    <button type="button" class="btn btn-danger" onclick="myAlert()">Delete</button>
+                    <form id="form-delete" method="POST" action="{{route('rooms.destroy', $room->id_room)}}">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
@@ -58,7 +72,7 @@
                     swal("Poof! Your data has been deleted!", {
                     icon: "success",
                     }).then(function(){
-                        window.location.href="{{route('rooms.index')}}"
+                        window.document.getElementById("form-delete").submit();
                     });
                 } else {
                     swal("Your data is safe!");

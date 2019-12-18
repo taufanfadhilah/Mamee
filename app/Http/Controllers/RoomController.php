@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Room;
 use Illuminate\Http\Request;
+use Auth;
+use Storage;
 
 class RoomController extends Controller
 {
@@ -14,7 +16,10 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+        $rooms = Room::where('id_perusahaan', Auth::user()->id_perusahaan)->get();
+        return view('rooms.index', [
+            'rooms' => $rooms
+        ]);
     }
 
     /**
@@ -24,7 +29,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        return view('rooms.add');
     }
 
     /**
@@ -35,7 +40,11 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $input['img_foto'] = env('APP_URL').'/storage/'.Storage::disk('public')->put('rooms', $request->photo);
+        $input['img_map'] = env('APP_URL').'/storage/'.Storage::disk('public')->put('maps', $request->map);
+        Room::create($input);
+        return redirect(route('rooms.index'));
     }
 
     /**
@@ -46,7 +55,9 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        //
+        return view('rooms.detail', [
+            'room' => $room
+        ]);
     }
 
     /**
@@ -57,7 +68,9 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
-        //
+        return view('rooms.edit', [
+            'room' => $room
+        ]);
     }
 
     /**
@@ -69,7 +82,15 @@ class RoomController extends Controller
      */
     public function update(Request $request, Room $room)
     {
-        //
+        $input = $request->all();
+        if ($request->photo) {
+            $input['img_foto'] = env('APP_URL').'/storage/'.Storage::disk('public')->put('rooms', $request->photo);
+        }
+        if ($request->map) {
+            $input['img_map'] = env('APP_URL').'/storage/'.Storage::disk('public')->put('maps', $request->map);
+        }
+        $room->update($input);
+        return redirect(route('rooms.index'));   
     }
 
     /**
@@ -80,6 +101,7 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
-        //
+        $room->delete();
+        return redirect(route('rooms.index'));   
     }
 }
