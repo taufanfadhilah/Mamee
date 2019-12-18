@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Division;
 use Illuminate\Http\Request;
+use Auth;
 
 class DivisionController extends Controller
 {
@@ -14,7 +15,10 @@ class DivisionController extends Controller
      */
     public function index()
     {
-        //
+        $divisions = Division::where('id_perusahaan', Auth::user()->id_perusahaan)->get();
+        return view('divisions.index', [
+            'divisions' => $divisions
+        ]);
     }
 
     /**
@@ -24,7 +28,7 @@ class DivisionController extends Controller
      */
     public function create()
     {
-        //
+        return view('divisions.add');
     }
 
     /**
@@ -35,7 +39,8 @@ class DivisionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Division::create($request->all());
+        return redirect(route('divisions.index'));
     }
 
     /**
@@ -46,7 +51,9 @@ class DivisionController extends Controller
      */
     public function show(Division $division)
     {
-        //
+        return view('divisions.detail', [
+            'division' => $division
+        ]);
     }
 
     /**
@@ -57,7 +64,9 @@ class DivisionController extends Controller
      */
     public function edit(Division $division)
     {
-        //
+        return view('divisions.edit', [
+            'division' => $division
+        ]);
     }
 
     /**
@@ -69,7 +78,8 @@ class DivisionController extends Controller
      */
     public function update(Request $request, Division $division)
     {
-        //
+        $division->update($request->all());
+        return redirect(route('divisions.index'));
     }
 
     /**
@@ -80,6 +90,7 @@ class DivisionController extends Controller
      */
     public function destroy(Division $division)
     {
-        //
+        $division->delete();
+        return redirect(route('divisions.index'));
     }
 }

@@ -81,8 +81,5 @@ Route::middleware('auth')->group(function () {
         return view('units.edit');
     })->name('units.edit');
 
-    Route::get('/divisions', function(){
-        return view('divisions.index');
-    })->name('divisions.index');
-
+    Route::resource('divisions', 'DivisionController');
 });

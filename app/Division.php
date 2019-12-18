@@ -14,4 +14,9 @@ class Division extends Model
     protected $primaryKey = 'id_divisi';
     // define fillable fields
     protected $fillable = ['id_divisi', 'id_perusahaan', 'nama_divisi', 'email_divisi', 'status'];
+
+    public function Organization()
+    {
+        return $this->belongsTo('App\Organization', 'id_perusahaan');
+    }
 }

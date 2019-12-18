@@ -14,7 +14,7 @@
             <div class="card-body">
                 <div class="row mb-4">
                     <div class="col-md-3">
-                    <a href="{{route('employee.add')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Add</a>
+                    <a href="{{route('divisions.create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Add</a>
                     </div>
                     <div class="input-group mb-3 col-md-3">
                         <div class="custom-file">
@@ -29,21 +29,23 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                            <th>NIK</th>
+                            <th>ID</th>
                             <th>Organization Name</th>
                             <th>Name</th>
                             <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <td>965025</td>
-                            <td>PT Finnet Indonesia</td>
-                            <td>IT Planning & Assurance</td>
-                            <td>
-                            <a href="{{route('employee.detail')}}" class="btn btn-info">View</a>
-                            </td>
-                            </tr>
+                            @foreach ($divisions as $division)
+                                <tr>
+                                    <td>{{$division->id_divisi}}</td>
+                                    <td>{{$division->Organization->nama_perusahaan}}</td>
+                                    <td>{{$division->nama_divisi}}</td>
+                                    <td>
+                                        <a href="{{route('divisions.show', $division->id_divisi)}}" class="btn btn-info">View</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
