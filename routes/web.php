@@ -19,9 +19,7 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
     
-    Route::get('/dashboard', function(){
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::resource('employee', 'EmployeeController');
     Route::resource('rooms', 'RoomController');
     Route::resource('units', 'UnitController');

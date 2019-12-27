@@ -14,4 +14,9 @@ class Meeting extends Model
     protected $primaryKey = 'id_meeting';
     // define fillable fields
     protected $fillable = ['id_meeting', 'nama_meeting', 'deskripsi', 'creator_nik', 'id_perusahaan', 'id_room', 'tanggal', 'timestart', 'timeend', 'status', 'time_created', 'time_modified', 'tipemeeting'];
+
+    public function Room()
+    {
+        return $this->belongsTo('App\Room', 'id_room');
+    }
 }
