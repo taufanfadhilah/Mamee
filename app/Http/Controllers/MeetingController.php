@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Meeting;
 use Illuminate\Http\Request;
+use PDF;
 
 class MeetingController extends Controller
 {
@@ -81,5 +82,23 @@ class MeetingController extends Controller
     public function destroy(Meeting $meeting)
     {
         //
+    }
+
+    public function report($year, $month)
+    {
+        $meetings = Meeting::whereYear('tanggal', $year)->whereMonth('tanggal', $month)->get();
+        return PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->setPaper('a4', 'landscape')->setWarnings(false)->loadview('meeting/report',  [
+            'meetings' => $meetings,
+            'year' => $year,
+            'month' => $month,
+            'currentDate' => date('d').' '.$this->getMonthBahasa(date('m')).' '.date('Y'),
+            'monthBahasa' => $this->getMonthBahasa($month)
+        ])->download('Laporan Meeting MaMee '.$this->getMonthBahasa($month).' '.$year.'.pdf');
+    }
+
+    public function getMonthBahasa($month)
+    {
+        $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        return $bulan[--$month];
     }
 }

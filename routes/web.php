@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/report/{year}/{month}', 'MeetingController@report')->name('meeting.report');
+
 Route::middleware('auth')->group(function () {
     
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');

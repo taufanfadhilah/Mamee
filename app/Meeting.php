@@ -19,4 +19,9 @@ class Meeting extends Model
     {
         return $this->belongsTo('App\Room', 'id_room');
     }
+
+    public function PIC()
+    {
+        return $this->hasMany('App\PIC', 'id_meeting')->where('absen', 1);
+    }
 }
