@@ -48,7 +48,7 @@
               @endif
                 <div class="p-5">
                   <div class="text-center">
-                    <img src="https://i.pinimg.com/736x/33/b8/69/33b869f90619e81763dbf1fccc896d8d--lion-logo-modern-logo.jpg" style="width: 300px;">
+                    <img src="{{asset('assets/img/logo.png')}}" style="width: 200px;">
                   </div>
                   <form class="user mt-2" action="{{ route('login') }}" method="POST">
                     @csrf
