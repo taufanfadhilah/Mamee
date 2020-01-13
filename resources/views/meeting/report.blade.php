@@ -56,7 +56,7 @@
                 <td>
                     <p class="text-center">
                         <b>
-                            1 {{$currentDate}}
+                            1 - {{$currentDate}}
                         </b>
                     </p>
                 </td>
