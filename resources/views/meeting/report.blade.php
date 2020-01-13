@@ -56,14 +56,14 @@
                 <td>
                     <p class="text-center">
                         <b>
-                            {{$monthBahasa}} {{$year}}
+                            1 {{$currentDate}}
                         </b>
                     </p>
                 </td>
             </tr>
         </table>
         <p class="tab">
-            Berikut merupakan hasil penggunaan aplikasi Management Meeting (MaMee) pada periode bulan <b>Desember 2019</b>:
+            Berikut merupakan hasil penggunaan aplikasi Management Meeting (MaMee) pada periode bulan <b>{{$monthBahasa}} {{$year}}</b>:
         </p>
         <table class="table-main">
             <thead>

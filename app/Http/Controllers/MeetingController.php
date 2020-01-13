@@ -92,7 +92,8 @@ class MeetingController extends Controller
             'year' => $year,
             'month' => $month,
             'currentDate' => date('d').' '.$this->getMonthBahasa(date('m')).' '.date('Y'),
-            'monthBahasa' => $this->getMonthBahasa($month)
+            'monthBahasa' => $this->getMonthBahasa($month),
+            'currentDay' => date('d')
         ])->download('Laporan Meeting MaMee '.$this->getMonthBahasa($month).' '.$year.'.pdf');
     }
 
